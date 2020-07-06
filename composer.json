@@ -1,0 +1,11 @@
+{
+    "name": "arharrab/test_fidesio",
+    "description": "Fidesio - Test technique Drupal 8",
+    "authors": [
+        {
+            "name": "arharrab",
+            "email": "a.rharrab@gmail.com"
+        }
+    ],
+    "require": {}
+}

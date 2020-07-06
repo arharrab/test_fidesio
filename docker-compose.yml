@@ -1,0 +1,53 @@
+version: "3.4"
+
+services:
+  web:
+    image: nginx:$NGINX_TAG
+    container_name: "${PROJECT_NAME}_nginx"
+    ports:
+      - $NGINX_PORT
+    volumes:
+      - "./conf:/etc/nginx/conf.d"
+      - "./drupal/src:/var/www/html"
+      - "./logs:/var/log/nginx/log"
+    depends_on:
+      - php
+    networks:
+      - external
+  
+  php:
+    image: drupal:$DRUPAL_TAG
+    container_name: "${PROJECT_NAME}_drupal"
+    volumes:
+      - "./drupal/src:/var/www/html"
+      - "./drupal/src/modules:/var/www/html/modules"
+      - "./drupal/src/sites:/var/www/html/sites"
+      - "./drupal/src/profiles:/var/www/html/profiles"
+      - "./drupal/src/themes:/var/www/html/themes"
+      - "./drupal/src/sites/default/files:/var/www/html/sites/default/files"
+    restart: unless-stopped
+    networks:
+      - internal
+      - external
+
+  mysql:
+    image: mysql:$MYSQL_TAG
+    container_name: "${PROJECT_NAME}_mysql"
+    entrypoint: ['/entrypoint.sh', '--default-authentication-plugin=mysql_native_password']
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_AIO: 0
+    volumes:
+      - ./database/mysql:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - internal
+networks:
+  external:
+    driver: bridge
+  internal:
+    driver: bridge
