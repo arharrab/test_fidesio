@@ -1,0 +1,37 @@
+uuid: eabccae5-1e24-411f-8873-3085c5fb7fbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.article_rss.body
+    - field.field.node.article_rss.field_tag
+    - node.type.article_rss
+  module:
+    - text
+    - user
+id: node.article_rss.default
+targetEntityType: node
+bundle: article_rss
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_tag:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

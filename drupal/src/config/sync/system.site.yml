@@ -1,0 +1,14 @@
+uuid: ac69553d-4dd0-4fdb-a150-bdaf6d8c77d8
+name: fidesio_test
+mail: a.rharrab@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE

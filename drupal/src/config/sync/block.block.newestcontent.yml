@@ -1,0 +1,22 @@
+uuid: 9ad11a28-f0f9-481f-97e7-886f2f14b3ef
+langcode: en
+status: true
+dependencies:
+  module:
+    - fidesio_rss
+  theme:
+    - bartik
+id: newestcontent
+theme: bartik
+region: sidebar_second
+weight: 0
+provider: null
+plugin: newest_content_block
+settings:
+  id: newest_content_block
+  label: 'Newest Content'
+  provider: fidesio_rss
+  label_display: visible
+  newest_content_expire: '100'
+  newest_content_count: '19'
+visibility: {  }
