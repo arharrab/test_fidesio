@@ -1,4 +1,4 @@
 /vendor/
 /drupal/src/sites/default/files
 /database/
-/database/mysql/
+/database/mysql/*

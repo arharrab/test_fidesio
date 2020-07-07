@@ -1,0 +1,8 @@
+{% if data is not empty %}
+    <div class="{{ class }}">
+        {% for item in data %}
+            <h5>{{ item.title }}</h5>
+            <div>{{ item.description|raw }}</div>
+        {% endfor %}
+    </div>
+{% endif %}

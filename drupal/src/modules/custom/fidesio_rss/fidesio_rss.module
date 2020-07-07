@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\fidesio_rss\Data\RssDataImport;
+use GuzzleHttp\Client;
+
+function fidesio_rss_cron() {
+    fidesio_rss_queue_worker_cronjob_callback();
+}
+
+function fidesio_rss_queue_worker_cronjob_callback() {
+
+    $queue = \Drupal::queue('rss_import_queue');
+    $queue->createQueue();
+
+    $client = new Client();
+  
+    $rssData = new RssDataImport($client);
+    $data = $rssData->getData();
+    foreach ($data as $item) {
+      try {
+        $queue->createItem($item);
+      }catch (\Exception $e) {
+        \Drupal::logger('cron-rss-log')->warning('Exception trow for create content from rss cron @error',
+            ['@error' => $e->getMessage()]);
+      }
+    }
+}
+
+function fidesio_rss_theme() {
+    $themes['block__last_rss_article'] = [
+        'variables' => ['class' => NULL, 'data' => []],
+        'template' => 'block--last-rss-article',
+        'path' => drupal_get_path('module', 'fidesio_rss') . '/templates',
+    ];
+
+    return $themes;
+}

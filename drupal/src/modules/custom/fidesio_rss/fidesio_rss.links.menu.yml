@@ -1,0 +1,7 @@
+fidesio_rss.settings:
+    title: RSS import settings
+    route_name: fidesio_rss.settings
+    description: 'This module provide settings for Rss import.'
+    parent: system.admin_config_services
+    weight: 10
+  

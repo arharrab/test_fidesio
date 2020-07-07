@@ -1,0 +1,7 @@
+fidesio_rss.settings:
+    path: '/admin/config/fidesio_rss/settings'
+    defaults:
+      _form: '\Drupal\fidesio_rss\Form\ImportRssConfigForm'
+      _title: 'RSS settings'
+    requirements:
+      _permission: 'administer site configuration'
